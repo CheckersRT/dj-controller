@@ -1,0 +1,7 @@
+.levelMeter {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    cursor: grab;
+    outline: none;
+}
