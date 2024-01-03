@@ -5,30 +5,48 @@ import { useRef, useState } from "react";
 import KnobBasic from "./components/KnobBasic/KnobBasic";
 import PlayButton from "./components/PlayButton/PlayButton";
 import CueButton from "./components/CueButton/CueButton";
+import LevelMeter from "./components/LevelMeter/LevelMeter";
 
 export default function Home() {
   const [playingOrPaused, setPlayingOrPaused] = useState("paused");
 
-  let audioContext;
+  let audioContext = useRef();
+  let track = useRef();
+  let gainNode = useRef();
 
   // references audio tag in jsx
   const audioElement = useRef();
-  console.log(audioElement);
+
+  // function called if there is no audio context present (on first render)
+  function createAudioContext() {
+    if (!audioContext.current) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioContext.current = new AudioContext();
+    }
+
+    if (!track.current) {
+      track.current = audioContext.current.createMediaElementSource(audioElement.current);
+      console.log("track in createAudioContext:", track);
+    }
+
+    if (!gainNode.current) {
+      gainNode.current = new GainNode(audioContext.current);
+      track.current.connect(gainNode.current).connect(audioContext.current.destination);
+    }
+  }
 
   // functionality for Play/Pause button
-
   function handlePlayPause() {
-    if (!audioContext) {
+    if (!audioContext.current) {
       createAudioContext();
     }
-    if (audioContext.state === "suspended") {
+    if (audioContext.current.state === "suspended") {
       audioContext.resume();
     }
-    if (playingOrPaused === "paused" ) {
+    if (playingOrPaused === "paused") {
       audioElement.current.play();
       setPlayingOrPaused("playing");
-    }
-    if (playingOrPaused === "playing") {
+    } else {
       audioElement.current.pause();
       setPlayingOrPaused("paused");
     }
@@ -44,10 +62,12 @@ export default function Home() {
     setPlayingOrPaused("paused");
   }
 
-  // function called if there is no audio context present (on first render)
-  function createAudioContext() {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    audioContext = new AudioContext();
+  function controlLevel(value) {
+    if (!audioContext) {
+      createAudioContext();
+    }
+    console.log(gainNode)
+    gainNode.current.gain.value = value;
   }
 
   return (
@@ -56,6 +76,7 @@ export default function Home() {
       <KnobBasic />
       <KnobBasic />
       <KnobBasic />
+      <LevelMeter controlLevel={controlLevel} />
       <CueButton onCue={handleCue} />
       <PlayButton onPlayPause={handlePlayPause} />
     </>
