@@ -3,14 +3,12 @@ import Image from 'next/image'
 import { useRef } from "react";
 import styles from './PlayButton.module.css'
 
-export default function PlayButton({ playingOrPaused, onPlayPause }) {
-  const audioElement = useRef();
-  console.log(audioElement);
+export default function PlayButton({ onPlayPause }) {
+
 
   return (
     <>
-      <audio ref={audioElement} src="/UnderTheBanner.m4a"></audio>
-      <button className={styles.button} onClick={() => onPlayPause(audioElement)}>
+      <button className={styles.button} onClick={() => onPlayPause()}>
       <Image    
                 className='buttonImage'
                 src="/images/playPause.svg"

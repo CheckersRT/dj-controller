@@ -10,7 +10,10 @@ export default function Home() {
 
   let audioContext;
 
-  function handlePlayPause(audioElement) {
+  const audioElement = useRef();
+  console.log(audioElement);
+
+  function handlePlayPause() {
     if (!audioContext) {
       createAudioContext();
     }
@@ -34,6 +37,7 @@ export default function Home() {
 
   return (
     <>
+      <audio ref={audioElement} src="/UnderTheBanner.m4a"></audio>
       <KnobBasic />
       <KnobBasic />
       <KnobBasic />
