@@ -1,7 +1,31 @@
 .levelMeter {
     -webkit-appearance: none;
     appearance: none;
-    width: 80px;
+    margin: 40px 0 45px -30px;
+    width: 170px;
+    height: 80px;
     cursor: grab;
     outline: none;
+    transform: rotate(90deg);
+    background-image: url(/images/level-meter-no-handle-horizontal.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.levelMeter::-webkit-slider-runnable-track {
+    padding: 0 7px;
+
+}
+
+.levelMeter::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 32px;
+    height: 64px;
+    /* background-color: black; */
+    background-image: url(/images/level-meter-handle-vertical.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
