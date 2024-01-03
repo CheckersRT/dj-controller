@@ -9,15 +9,8 @@ export default function Home() {
   const [playingOrPaused, setPlayingOrPaused] = useState("paused");
 
   let audioContext;
-  let track;
 
-  const audioElement = useRef();
-  console.log(audioElement);
-
-  const playButton = useRef();
-  console.log(playButton);
-
-  function handlePlay() {
+  function handlePlayPause(audioElement) {
     if (!audioContext) {
       createAudioContext();
     }
@@ -41,14 +34,10 @@ export default function Home() {
 
   return (
     <>
-      <audio ref={audioElement} src="/UnderTheBanner.m4a"></audio>
-      <button ref={playButton} onClick={handlePlay}>
-        Play
-      </button>
       <KnobBasic />
       <KnobBasic />
       <KnobBasic />
-      {/* <PlayButton/> */}
+      <PlayButton playingOrPaused={playingOrPaused} onPlayPause={handlePlayPause}/>
     </>
   );
 }

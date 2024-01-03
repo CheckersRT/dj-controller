@@ -7,18 +7,18 @@ export default function KnobBasic() {
         <>
         <div className={styles.mainContainer}>
             <Image
-                src="/knobBackground.svg"
+                src="/images/knobBackground.svg"
                 alt="knobbackground svg image"
-                width={120}
-                height={120}
+                width={80}
+                height={80}
                 priority
                 />
         <div className={styles.mainItem}>
             <Image
-            src="/knob.svg"
+            src="/images/knob.svg"
             alt="knob svg image"
-            width={80}
-            height={80}
+            width={52}
+            height={52}
             />
         </div>
         </div>

@@ -1,35 +1,25 @@
-"use client"
-
+"use client";
+import Image from 'next/image'
 import { useRef } from "react";
+import styles from './PlayButton.module.css'
 
-export default function PlayButton() {
+export default function PlayButton({ playingOrPaused, onPlayPause }) {
+  const audioElement = useRef();
+  console.log(audioElement);
 
-    let audioContext;
-    let track;
-
-    const audioElement = useRef()
-    
-    const playButton = useRef()
-    
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-
-    audioContext = new AudioContext();
-    track = new MediaElementAudioSourceNode(audioContext, {
-        mediaElement: audioElement,
-    })
-    // track = audioContext.createMediaElementSource(audioElement)
-    
-    
-    function handleClick() {
-        
-        audioElement.play();
-
-    }
-    
-    return (
-        <>
-        <audio ref={audioElement} src="/Massive.wav"></audio>
-        <button ref={playButton} onClick={handleClick}>Play</button>
-        </>
-    )
+  return (
+    <>
+      <audio ref={audioElement} src="/UnderTheBanner.m4a"></audio>
+      <button className={styles.button} onClick={() => onPlayPause(audioElement)}>
+      <Image    
+                className='buttonImage'
+                src="/images/playPause.svg"
+                alt="play/pause button"
+                width={120}
+                height={130}
+                priority
+                />
+        </button>
+    </>
+  );
 }
