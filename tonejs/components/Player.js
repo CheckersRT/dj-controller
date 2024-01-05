@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import * as Tone from "tone/build/esm/index";
 
 export default function Player() {
-  const player = new Tone.Player({
-      url: "/hiphop.wav",
-      loop: true,
-      loopStart: 0.5,
-      loopEnd: 0.7,
-    }).toDestination();
+//   const player = new Tone.Player({
+//       url: "/hiphop.wav",
+//       loop: true,
+//       loopStart: 0.5,
+//       loopEnd: 0.7,
+//     }).toDestination();
 
   const synth = new Tone.Synth().toDestination();
   synth.triggerAttackRelease("C4", "8n");
