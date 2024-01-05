@@ -4,21 +4,19 @@
   width: 400px;
   height: 800px;
   grid-template-areas:
-    "a a"
-    "b b"
-    "c c"
-    "d d"
-    "e e"
-    "f ."
-    "g .";
-  /* grid-template-rows: 20% 40% 10% 15% 15%;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr; */
+    "a a a a a a"
+    "b b b b b b"
+    "c . . . . d"
+    "e f f f f d"
+    "g f f f f d";
+  grid-template-rows: 20% 40% 10% 15% 15%;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr;
 }
 
 .grid_a {
   grid-area: a;
-  border: 1px solid yellow;
-  background-color: red;
+  border: 3px solid yellow;
+  /* background-color: red; */
 }
 
 .grid_b {
@@ -32,16 +30,15 @@
 
 .grid_d {
   grid-area: d;
-  width: 200px;
   border: 1px solid purple;
 }
 .grid_e {
   grid-area: e;
-  background-color: green;
+  background-color: blue;
 }
 .grid_f {
   grid-area: f;
-  background-color: green;
+  /* background-color: green; */
 }
 .grid_g {
   grid-area: g;
