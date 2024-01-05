@@ -30,6 +30,7 @@
 
 .grid_d {
   grid-area: d;
+  padding: 5px;
   border: 1px solid purple;
 }
 .grid_e {

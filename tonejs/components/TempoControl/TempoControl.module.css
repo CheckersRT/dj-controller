@@ -1,45 +1,42 @@
-/* .container {
-    height: 100%;
-    width: 100%;
-    background-color: lightblue;
-} */
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-image: url(/images/tempoControl-no-handle.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
 
 .tempoControl {
-    -webkit-appearance: none;
-    appearance: none;
-    /* position: absolute; */
-    margin: auto;
-    /* width: 100%;
-    height: 50%; */
-    cursor: grab;
-    outline: none;
-    display: inline-block;
-    transform-origin: center;
-    transform: translate(-50%, -50%);
-    /* translate: -85px 85px; */
-    /* transform: rotate(90deg); */
-    background-color: lightcoral;
-    background-image: url(/images/tempoControl-no-handle-rotated.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+    height: 100%;
+  cursor: grab;
+  outline: none;
+  display: inline-block;
+  background-color: transparent;
+  transform: translate(-50%, -50.5%);
 }
 
 .tempoControl::-webkit-slider-runnable-track {
-    /* width: 100%;
-    height: 100%; */
-    /* padding: 0 18px 0 15px; */
+  transform: rotate(90deg);
 
 }
 
 .tempoControl::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 53px;
-    height: 60px;
-    transform: translate(-3.5px, -3px);
-    background-image: url(/images/TempoControl-handle-rotated.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 53px;
+  height: 60px;
+  transform: translate(-3.5px, -3px);
+  background-image: url(/images/TempoControl-handle-rotated.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
