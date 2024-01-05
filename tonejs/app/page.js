@@ -2,14 +2,14 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import dynamic from "next/dynamic";
 
-const Player = dynamic(() => import("../components/Player"), {
+const PlayerOne = dynamic(() => import("../components/PlayerOne"), {
   ssr: false,
 });
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Player/>
+      <PlayerOne/>
     </main>
   );
 }

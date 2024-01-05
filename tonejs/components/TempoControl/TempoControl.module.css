@@ -1,0 +1,40 @@
+.container {
+    height: 250px;
+    width: 80px;
+    background-color: blue;
+    position: relative;
+}
+
+.tempoControl {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    /* margin: 40px 0 45px -30px; */
+    width: 250px;
+    height: 80px;
+    cursor: grab;
+    outline: none;
+    transform: rotate(90deg);
+    translate: -85px 85px;
+    background-image: url(/images/tempoControl-no-handle-rotated.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.tempoControl::-webkit-slider-runnable-track {
+    padding: 0 18px 0 15px;
+
+}
+
+.tempoControl::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 53px;
+    height: 60px;
+    transform: translate(-3.5px, -3px);
+    background-image: url(/images/TempoControl-handle-rotated.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
