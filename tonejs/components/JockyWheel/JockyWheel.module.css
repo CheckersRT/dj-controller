@@ -1,14 +1,9 @@
 .container {
-  height: 600px;
-  width: 600px;
-  /* background-color: blue; */
+  height: 400px;
+  width: 400px;
   position: relative;
   overflow: hidden;
-  /* background-color: transparent;
-  background-image: url(/images/JockyWheel-rotated.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center; */
+  border: 1px solid blue;
 }
 
 .container::before {
@@ -29,17 +24,13 @@
   appearance: none;
   position: absolute;
   margin: -85px 0px 0px 85px;
-  height: 600px;
-  width: 600px;
+  height: 100%;
+  width: 100%;
   cursor: grab;
   outline: none;
   transform: rotate(270deg);
   translate: -85px 85px;
   background-color: transparent;
-  /* background-image: url(/images/JockyWheel-rotated.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center; */
 }
 
 .jockyWheel::-webkit-slider-runnable-track {
@@ -51,5 +42,5 @@
   appearance: none;
   width: 153px;
   height: 600px;
-  background-color: red;
+  /* background-color: red; */
 }

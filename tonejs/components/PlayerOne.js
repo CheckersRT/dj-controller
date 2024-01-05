@@ -2,6 +2,7 @@
 
 import * as Tone from "tone/build/esm/index";
 import { useEffect, useState, useRef } from "react";
+import styles from './PlayerOne.module.css'
 import PlayButton from "./PlayButton/PlayButton";
 import CueButton from "./CueButton/CueButton";
 import TempoControl from "./TempoControl/TempoControl";
@@ -40,24 +41,18 @@ export default function PlayerOne() {
 
   function handleTurn(value) {
     setRotation(value)
-    // console.log(value)
-    // Tone.Transport.pause()
-    // player.current.seek(`+${value}`)
-    // console.log(player.current)
-    // console.log("Current clock time: ", Tone.immediate())
-    // player.current.seek(10, 0)
-    // console.log("Clock time after seek: ", Tone.immediate())
     Tone.Transport.position = `+${1*value}`
-    // set the value of the input back to 0 at the end of the function
-    // if(event.target.value !== 0) {event.target.value = 0}
   }
 
   return (
-    <>
-      <JockyWheel onTurn={handleTurn} rotation={rotation}/>
-      <CueButton player={player} onCue={handleCue} />
-      <PlayButton player={player} onPlayPause={handlePlayPause} />
-      <TempoControl onTempoChange={handleTempoChange} />
-    </>
+    <div className={styles.grid_container}>
+      <div className={styles.grid_a}>Hi</div>
+      <JockyWheel className={styles.grid_b} onTurn={handleTurn} $rotation={rotation}/>
+      <div className={styles.grid_c} >SHIFT</div>
+      <TempoControl className={styles.grid_d} onTempoChange={handleTempoChange} />
+      <CueButton className={styles.grid_e} player={player} onCue={handleCue} />
+      <div className={styles.grid_f} >HOT CUES</div>
+      <PlayButton className={styles.grid_g} player={player} onPlayPause={handlePlayPause} />
+    </div>
   );
 }
