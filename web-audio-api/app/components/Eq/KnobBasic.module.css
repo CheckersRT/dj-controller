@@ -1,0 +1,11 @@
+.mainContainer {
+    width: 120px;
+    height: 100px;
+    position: relative;
+}
+
+.mainItem {
+    position: absolute;
+    top: 14px;
+    left: 15px
+}
