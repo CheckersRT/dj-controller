@@ -9,13 +9,13 @@ const PlayerOne = dynamic(() => import("../components/PlayerOne"), {
 export default function Home() {
   return (
     <main className={styles.grid_container}>
-      <section className={`${styles.player} ${styles.grid_item}`}>
+      <section className={styles.grid_item}>
         <PlayerOne />
       </section>
-      <section className={`${styles.mixer} ${styles.grid_item}`}>
+      <section className={styles.grid_item}>
         {/* <Mixer/> */}
       </section>
-      <section className={`${styles.player} ${styles.grid_item}`}>
+      <section className={styles.grid_item}>
       <PlayerOne />
       </section>
     </main>
