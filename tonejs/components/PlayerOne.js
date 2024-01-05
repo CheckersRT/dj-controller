@@ -8,6 +8,7 @@ import TempoControl from "./TempoControl/TempoControl";
 import JockyWheel from "./JockyWheel/JockyWheel";
 
 export default function PlayerOne() {
+  const [rotation, setRotation] = useState(0)
   let player = useRef();
 
   useEffect(() => {
@@ -38,6 +39,7 @@ export default function PlayerOne() {
   }
 
   function handleTurn(value) {
+    setRotation(value)
     // console.log(value)
     // Tone.Transport.pause()
     // player.current.seek(`+${value}`)
@@ -52,7 +54,7 @@ export default function PlayerOne() {
 
   return (
     <>
-      <JockyWheel onTurn={handleTurn}/>
+      <JockyWheel onTurn={handleTurn} rotation={rotation}/>
       <CueButton player={player} onCue={handleCue} />
       <PlayButton player={player} onPlayPause={handlePlayPause} />
       <TempoControl onTempoChange={handleTempoChange} />
