@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
 import * as Tone from "tone/build/esm/index";
+import PlayButton from "./PlayButton/PlayButton";
+import CueButton from "./CueButton/CueButton";
 
 export default function Player() {
-
-// const file = URL.createObjectURL()
-
   const player = new Tone.Player({
-      url: "/hiphop.wav",
-    }).toDestination();
+    url: "/hiphop.wav",
+  }).toDestination();
 
-  async function handlePlay() {
-    await Tone.start()
-    player.start()
-  }
+  player.sync().start(0) 
 
-  return <button onClick={() => handlePlay()}>Play</button>;
+  return (
+    <>
+      <CueButton player={player} />
+      <PlayButton player={player} />
+    </>
+  );
 }

@@ -1,0 +1,11 @@
+.button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    width: 112px;
+    height: 120px;
+
+    background-image: url("/images/playPause.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
