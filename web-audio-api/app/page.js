@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <>
       <audio ref={audioElement} src="/UnderTheBanner.m4a"></audio>
-      <EqLow onClick={handleEq}/>
+      {/* <EqLow onClick={handleEq}/> */}
       <LevelMeter controlLevel={controlLevel} />
       <CueButton onCue={handleCue} />
       <PlayButton onPlayPause={handlePlayPause} />
