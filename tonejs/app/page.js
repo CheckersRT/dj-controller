@@ -6,13 +6,10 @@ const Player = dynamic(() => import("../components/Player"), {
   ssr: false,
 });
 
-
 export default function Home() {
-
   return (
     <main className={styles.main}>
-      <p>TEST</p>
-      <Player />
+      <Player/>
     </main>
   );
 }
