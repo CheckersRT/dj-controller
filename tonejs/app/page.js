@@ -5,6 +5,9 @@ import dynamic from "next/dynamic";
 const PlayerOne = dynamic(() => import("../components/PlayerOne"), {
   ssr: false,
 });
+const Mixer = dynamic(() => import("../components/Mixer/Mixer"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -13,7 +16,7 @@ export default function Home() {
         <PlayerOne />
       </section>
       <section className={styles.grid_item}>
-        {/* <Mixer/> */}
+        <Mixer/>
       </section>
       <section className={styles.grid_item}>
       <PlayerOne />
