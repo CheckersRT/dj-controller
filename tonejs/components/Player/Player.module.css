@@ -1,8 +1,10 @@
 .grid_container {
+    margin: 0;
+
   display: grid;
   grid-auto-flow: row;
-  width: 400px;
-  height: 800px;
+  width: 600px;
+  height: 700px;
   grid-template-areas:
     "a a a a a a"
     "b b b b b b"
@@ -30,7 +32,7 @@
 
 .grid_d {
   grid-area: d;
-  padding: 5px;
+  padding: 6px;
   border: 1px solid purple;
 }
 .grid_e {

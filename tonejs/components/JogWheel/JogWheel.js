@@ -1,4 +1,4 @@
-import styles from "./JockyWheel.module.css";
+import styles from "./JogWheel.module.css";
 import styled from "styled-components";
 
 export default function JockyWheel({ onTurn, $rotation }) {

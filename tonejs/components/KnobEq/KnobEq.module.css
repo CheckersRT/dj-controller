@@ -1,0 +1,18 @@
+.container {
+    height: 100px;
+    position: relative;
+    background-color: aqua;
+    background-image: url("/images/KnobBackground.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.knob {
+    margin: 0;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
