@@ -1,25 +1,16 @@
-"use client";
 
-import * as Tone from "tone/build/esm/index";
 import { useEffect, useState, useRef } from "react";
 import styles from "./Player.module.css";
 import PlayButton from "../PlayButton/PlayButton";
 import CueButton from "../CueButton/CueButton";
 import TempoControl from "../TempoControl/TempoControl";
 import JogWheel from "../JogWheel/JogWheel";
+import * as Tone from 'tone/build/esm'
 
-export default function PlayerOne() {
+export default function Player({
+  player
+}) {
   const [rotation, setRotation] = useState(0);
-  let player = useRef();
-
-  useEffect(() => {
-    if (!player.current) {
-      player.current = new Tone.Player({
-        url: "/UnderTheBanner.m4a",
-      }).toDestination();
-      player.current.sync().start(0);
-    }
-  }, []);
 
   function handlePlayPause() {
     if (player.current.state === "stopped") {

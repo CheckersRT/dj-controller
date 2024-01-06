@@ -1,7 +1,8 @@
 .container {
     height: 100px;
+    width: 100px;
     position: relative;
-    background-color: aqua;
+    /* background-color: aqua; */
     background-image: url("/images/KnobBackground.svg");
     background-repeat: no-repeat;
     background-size: contain;

@@ -3,14 +3,14 @@ import styles from "./KnobEq.module.css";
 import styled from "styled-components";
 
 export default function KnobEq({
-  onClick,
-  knobSlider,
+  onTurn,
   knobImage,
   onMouseMove,
   $knobAngle,
   mouseDown,
   onMouseDown,
-  onMouseUp
+  onMouseUp,
+  setMouseDown
 }) {
 
 
@@ -23,10 +23,9 @@ export default function KnobEq({
         <div className={styles.knob}>
           <StyledButton
             angle={$knobAngle}
-            onMouseDown={() => onMouseDown()}
-            onMouseMove={mouseDown ? (event) => onClick(event) : null}
-            onMouseUp={onMouseUp}
-            // onClick={(event) => onClick(event)}
+            onMouseDown={() => setMouseDown(true)}
+            onMouseMove={mouseDown ? (event) => onTurn(event) : null}
+            onMouseUp={() => setMouseDown(false)}
           >
             <Image
               draggable="false"
@@ -39,13 +38,6 @@ export default function KnobEq({
           </StyledButton>
         </div>
       </div>
-      <input
-        ref={knobSlider}
-        type="range"
-        min={-180}
-        max={180}
-        step={1}
-      ></input>
     </>
   );
 }
