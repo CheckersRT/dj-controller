@@ -4,7 +4,7 @@ import styles from "./Mixer.module.css";
 import { useRef, useState } from "react";
 import calculateAngle from "@/ultils/calculateAngle";
 
-export default function Mixer({ player }) {
+export default function Mixer({ playerOne, playerTwo }) {
   const [mousePosition, setMousePosition] = useState({
     moveX: 0,
     moveY: 0,
@@ -28,7 +28,7 @@ export default function Mixer({ player }) {
 
     setAngle(calculateAngle(centerX, centerY, mouseX, mouseY));
 
-    player.current.volume.value = angle / 20;
+    playerOne.current.volume.value = angle / 20;
   }
 
   function handleMouseMove(event) {

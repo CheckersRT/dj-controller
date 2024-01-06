@@ -1,73 +1,39 @@
-"use client"
+"use client";
 
 import Player from "../Player/Player";
 import Mixer from "../Mixer/Mixer";
 import styles from "./Controller.module.css";
-import { useState, useRef, useEffect} from 'react'
-import * as Tone from 'tone/build/esm/'
+import { useState, useRef, useEffect } from "react";
+import * as Tone from "tone/build/esm/";
 
 export default function Controller() {
-  const [rotation, setRotation] = useState(0);
-  let player = useRef();
+  let playerOne = useRef();
+  let playerTwo = useRef();
 
   useEffect(() => {
-    if (!player.current) {
-      player.current = new Tone.Player({
+    if (!playerOne.current) {
+      playerOne.current = new Tone.Player({
         url: "/UnderTheBanner.m4a",
       }).toDestination();
-      player.current.sync().start(0);
+      playerOne.current.sync().start(0);
+    } else if (!playerTwo.current) {
+      playerTwo.current = new Tone.Player({
+        url: "/hiphop.wav",
+      }).toDestination();
+      playerTwo.current.sync().start(0);
     }
   }, []);
-
-  function handlePlayPause() {
-    if (player.current.state === "stopped") {
-      Tone.Transport.start();
-    } else if (player.current.state === "started") {
-      Tone.Transport.pause();
-    }
-  }
-
-  function handleCue() {
-    Tone.Transport.stop();
-  }
-
-  function handleTempoChange(percentage) {
-    const newPlaybackRate = 1 + percentage * player.current.playbackRate;
-    player.current.playbackRate = newPlaybackRate;
-    console.log(newPlaybackRate);
-  }
-
-  function handleTurn(value) {
-    setRotation(value);
-    Tone.Transport.position = `+${1 * value}`;
-  }
 
   return (
     <main className={styles.grid_container}>
       <section className={styles.grid_item}>
-        <Player
-          playerRef={player}
-          onPlayPause={handlePlayPause}
-          onCue={handleCue}
-          onTempoChange={handleTempoChange}
-          onTurn={handleTurn}
-          rotation={rotation}
-        />
+        <Player player={playerOne} />
       </section>
       <section className={styles.grid_item}>
-        <Mixer 
-        player={player}
-        />
+        <Mixer playerOne={playerOne} playerTwo={playerTwo}/>
       </section>
       <section className={styles.grid_item}>
-        <Player
-          player={player}
-          onPlayPause={handlePlayPause}
-          onCue={handleCue}
-          onTempoChange={handleTempoChange}
-          onTurn={handleTurn}
-          rotation={rotation}
-        />
+        <Player player={playerTwo} />
       </section>
     </main>
   );
