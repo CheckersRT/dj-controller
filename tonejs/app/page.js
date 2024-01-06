@@ -10,6 +10,7 @@ const Mixer = dynamic(() => import("../components/Mixer/Mixer"), {
 });
 
 export default function Home() {
+
   return (
     <main className={styles.grid_container}>
       <section className={styles.grid_item}>
