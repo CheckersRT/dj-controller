@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import dynamic from "next/dynamic";
 
-const PlayerOne = dynamic(() => import("../components/PlayerOne"), {
+const PlayerOne = dynamic(() => import("../components/Player/Player"), {
   ssr: false,
 });
 const Mixer = dynamic(() => import("../components/Mixer/Mixer"), {
@@ -16,10 +16,10 @@ export default function Home() {
         <PlayerOne />
       </section>
       <section className={styles.grid_item}>
-        <Mixer/>
+        <Mixer />
       </section>
       <section className={styles.grid_item}>
-      <PlayerOne />
+        <PlayerOne />
       </section>
     </main>
   );
