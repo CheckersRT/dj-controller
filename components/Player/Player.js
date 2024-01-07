@@ -1,22 +1,34 @@
-
 import { useEffect, useState, useRef } from "react";
 import styles from "./Player.module.css";
 import PlayButton from "../PlayButton/PlayButton";
 import CueButton from "../CueButton/CueButton";
 import TempoControl from "../TempoControl/TempoControl";
 import JogWheel from "../JogWheel/JogWheel";
-import * as Tone from 'tone/build/esm'
+import * as Tone from "tone/build/esm";
 
-export default function Player({
-  player
-}) {
+export default function Player({ player, context }) {
   const [rotation, setRotation] = useState(0);
+  const [playTime, setPlayTime] = useState(0);
+  const [timeElasped, setTimeElasped] = useState(0);
 
   function handlePlayPause() {
+    if (Tone.Transport.state !== "started") {
+    Tone.Transport.start();
+    // player.current.sync()
+    }
     if (player.current.state === "stopped") {
-      Tone.Transport.start();
+      setPlayTime(player.current.context.currentTime);
+      console.log("Play time: ", player.current.context.currentTime);
+      console.log("Elasped Time:", timeElasped);
+      player.current.start(0, timeElasped);
     } else if (player.current.state === "started") {
-      Tone.Transport.pause();
+      player.current.stop();
+      setTimeElasped(
+        timeElasped + (player.current.context.currentTime - playTime)
+      );
+      console.log(
+        `${player.current.context.name} Pause time: ${player.current.context.currentTime}`
+      );
     }
   }
 
@@ -31,8 +43,11 @@ export default function Player({
   }
 
   function handleTurn(value) {
+    console.log(value)
     setRotation(value);
+    console.log(player.current.transport)
     Tone.Transport.position = `+${1 * value}`;
+    // player.current.transport.position.value = `+${1 * value}`;
   }
 
   return (

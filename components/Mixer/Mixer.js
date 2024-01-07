@@ -4,7 +4,7 @@ import styles from "./Mixer.module.css";
 import { useRef, useState } from "react";
 import calculateAngle from "@/ultils/calculateAngle";
 
-export default function Mixer({ playerOne, playerTwo }) {
+export default function Mixer({ player1, player2, onCrossFade }) {
   const [mousePosition, setMousePosition] = useState({
     moveX: 0,
     moveY: 0,
@@ -39,7 +39,6 @@ export default function Mixer({ playerOne, playerTwo }) {
     });
   }
 
-
   return (
     <div className={styles.container}>
       <p>MIXER</p>
@@ -51,6 +50,7 @@ export default function Mixer({ playerOne, playerTwo }) {
         onMouseMove={handleMouseMove}
         mouseDown={mouseDown}
       />
+      <input type="range" min={0} max={1} step={0.1} onChange={(event) => onCrossFade(event.target.value)}></input>
     </div>
   );
 }

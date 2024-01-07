@@ -7,33 +7,41 @@ import { useState, useRef, useEffect } from "react";
 import * as Tone from "tone/build/esm/";
 
 export default function Controller() {
-  let playerOne = useRef();
-  let playerTwo = useRef();
+  let player1 = useRef();
+  let player2 = useRef();
 
   useEffect(() => {
-    if (!playerOne.current) {
-      playerOne.current = new Tone.Player({
+    if (!player1.current) {
+      player1.current = new Tone.Player({
         url: "/UnderTheBanner.m4a",
       }).toDestination();
-      playerOne.current.sync().start(0);
-    } else if (!playerTwo.current) {
-      playerTwo.current = new Tone.Player({
+      console.log(player1)
+    } else if (!player2.current) {
+      player2.current = new Tone.Player({
         url: "/hiphop.wav",
       }).toDestination();
-      playerTwo.current.sync().start(0);
+      console.log(player2.current)
     }
   }, []);
+
+  function handleCrossFade(value) {
+    const crossFade = new Tone.CrossFade().toDestination();
+    player1.current.connect(crossFade.a)
+    player2.current.connect(crossFade.b)
+    crossFade.fade.value = value;
+  }
+
 
   return (
     <main className={styles.grid_container}>
       <section className={styles.grid_item}>
-        <Player player={playerOne} />
+        <Player key={player1} player={player1}/>
       </section>
       <section className={styles.grid_item}>
-        <Mixer playerOne={playerOne} playerTwo={playerTwo}/>
+        <Mixer player1={player1} player2={player2} onCrossFade={handleCrossFade} />
       </section>
       <section className={styles.grid_item}>
-        <Player player={playerTwo} />
+        <Player key={player2} player={player2}/>
       </section>
     </main>
   );
