@@ -18,16 +18,11 @@ export default function Player({ player, context }) {
     }
     if (player.current.state === "stopped") {
       setPlayTime(player.current.context.currentTime);
-      console.log("Play time: ", player.current.context.currentTime);
-      console.log("Elasped Time:", timeElasped);
       player.current.start(0, timeElasped);
     } else if (player.current.state === "started") {
       player.current.stop();
       setTimeElasped(
         timeElasped + (player.current.context.currentTime - playTime)
-      );
-      console.log(
-        `${player.current.context.name} Pause time: ${player.current.context.currentTime}`
       );
     }
   }

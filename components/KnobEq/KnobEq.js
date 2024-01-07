@@ -8,12 +8,11 @@ export default function KnobEq({
   onMouseMove,
   $knobAngle,
   mouseDown,
-  onMouseDown,
-  onMouseUp,
   setMouseDown
 }) {
 
 
+  
   return (
     <>
       <div
@@ -42,19 +41,9 @@ export default function KnobEq({
   );
 }
 
-// when mousedown and mousemove on Image, calculate angles etc.
-//convert angles into slider position
-//move slider
-//event.target.value = slider position
-
 const StyledButton = styled.button`
   border: none;
   background-color: transparent;
   transform: rotate(${(props) => props.angle}deg);
 `;
 
-// const StyledDiv = styled.div`
-//   &::before {
-//     transform: rotate(${(props) => props.rotation * 100}deg);
-//   }
-// `;
