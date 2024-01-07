@@ -63,6 +63,32 @@ export default function Mixer({
       player2.current.volume.value = event.target.value;
   }
 
+  const mixer = [
+    {
+      channel1: {
+        gain: 0,
+        eQs: {
+          high: 0,
+          mid: 0,
+          low: 0,
+        },
+        filter: 0,
+        fader: 0,
+      },
+    },
+    {
+      channel1: {
+        gain: 0,
+        eQs: {
+          high: 0,
+          mid: 0,
+          low: 0,
+        },
+        filter: 0,
+        fader: 0,
+      },
+    },
+  ];
   const eQArray = ["high", "mid", "low"];
   const channelArray = ["channel1", "channel2"];
 
