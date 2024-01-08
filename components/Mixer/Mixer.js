@@ -20,8 +20,6 @@ export default function Mixer({
   const [angle, setAngle] = useState(0);
   const [knobName, setKnobName] = useState("")
 
-  const knobImageRef = useRef();
-
   function handleTurn(event) {
     //Get coordinates for center of image
     const { height, width, x, y } =
@@ -111,7 +109,6 @@ export default function Mixer({
                   key={channel.id+eq}
                   name={channel.id+eq}
                   $knobAngle={knobName === channel.id+eq ? angle : null}
-                  knobImage={knobImageRef}
                   onTurn={handleTurn}
                   setMouseDown={setMouseDown}
                   onMouseMove={handleMouseMove}
@@ -122,7 +119,7 @@ export default function Mixer({
             <label htmlFor={channel.id}>Channel {channel.id} fader</label>
             <input
               id={channel.id}
-              name={channel.id}
+              name={"fader"+channel.id}
               type="range"
               min={-60}
               max={0}

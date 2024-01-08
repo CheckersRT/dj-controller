@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 export default function KnobEq({
   onTurn,
-  knobImage,
   onMouseMove,
   $knobAngle,
   mouseDown,
@@ -35,7 +34,6 @@ export default function KnobEq({
               $knobId={$knobId}
               name={name}
               draggable="false"
-              ref={knobImage}
               src="/images/knob.svg"
               alt="knob svg image"
               width={62}
