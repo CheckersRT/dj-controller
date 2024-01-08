@@ -89,6 +89,12 @@ export default function Mixer({
       },
     },
   ];
+
+  const channelArray2 = [
+    { id: "1", channel1: ["gain", { eqs: ["high", "mid", "low"] }, "filter", "fader"] },
+    { id: "2", channel2: ["gain", { eqs: ["high", "mid", "low"] }, "filter", "fader"] },
+  ];
+
   const eQArray = ["high", "mid", "low"];
   const channelArray = ["channel1", "channel2"];
 
