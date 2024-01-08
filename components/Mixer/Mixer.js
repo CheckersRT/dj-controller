@@ -92,7 +92,7 @@ export default function Mixer({
             <div>
               {channelArray[channel.id-1].channel[1].eqs.map((eq) => (
                 <KnobEq
-                  knobId={knobId}
+                  $knobId={knobId}
                   key={eq}
                   name={channel.id+eq}
                   $knobAngle={angle}

@@ -10,7 +10,7 @@ export default function KnobEq({
   mouseDown,
   setMouseDown,
   name,
-  knobId,
+  $knobId,
 }) {
 
 
@@ -47,6 +47,6 @@ export default function KnobEq({
 const StyledButton = styled.button`
   border: none;
   background-color: transparent;
-  transform: rotate(${(props) => knobId === name ? props.angle : null}deg);
+  transform: rotate(${(props) => props.$knobId === props.name ? props.angle : null}deg);
 `;
 
