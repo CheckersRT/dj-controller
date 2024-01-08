@@ -18,29 +18,45 @@ export default function Mixer({
   });
   const [mouseDown, setMouseDown] = useState(false);
   const [angle, setAngle] = useState(0);
-  const [knobId, setKnobId] = useState("")
+  const [knobName, setKnobName] = useState("")
 
   const knobImageRef = useRef();
 
   function handleTurn(event) {
     //Get coordinates for center of image
     const { height, width, x, y } =
-      knobImageRef.current.getBoundingClientRect();
+      // knobImageRef.current.getBoundingClientRect();
+      event.target.getBoundingClientRect();
 
     const centerX = x + width / 2;
     const centerY = y + height / 2;
+    console.log("Center points: ", centerX, centerY)
 
     // Get position of mouse
     const mouseX = mousePosition.moveX;
     const mouseY = mousePosition.moveY;
 
-    setAngle(calculateAngle(centerX, centerY, mouseX, mouseY));
+
+    const angleOfKnob = calculateAngle(centerX, centerY, mouseX, mouseY)
+
+    function calculateTurn(angleOfKnob) {
+      if(angleOfKnob <= -145) {
+        return -145
+      } else if (angleOfKnob >= 145) {
+        return 145
+      } else return angleOfKnob
+    }
+    const newAngle = calculateTurn(angleOfKnob)
+    console.log(newAngle)
+
+    setAngle(newAngle);
+    console.log(calculateAngle(centerX, centerY, mouseX, mouseY))
 
     // player1.current.volume.value = angle / 20;
-    setKnobId(event.target.id)
+    setKnobName(event.target.name)
 
 
-    console.log(event.target)
+    console.log(event.target.name)
     if(event.target.id === "low1") {
       eQsCh1.current.low.value = angle / 10;
 
@@ -92,10 +108,9 @@ export default function Mixer({
             <div>
               {channelArray[channel.id-1].channel[1].eqs.map((eq) => (
                 <KnobEq
-                  $knobId={knobId}
-                  key={eq}
+                  key={channel.id+eq}
                   name={channel.id+eq}
-                  $knobAngle={angle}
+                  $knobAngle={knobName === channel.id+eq ? angle : null}
                   knobImage={knobImageRef}
                   onTurn={handleTurn}
                   setMouseDown={setMouseDown}

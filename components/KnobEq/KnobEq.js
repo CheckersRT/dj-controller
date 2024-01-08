@@ -11,6 +11,7 @@ export default function KnobEq({
   setMouseDown,
   name,
   $knobId,
+  key,
 }) {
 
 
@@ -23,13 +24,16 @@ export default function KnobEq({
       >
         <div className={styles.knob}>
           <StyledButton
+            id={key}
             angle={$knobAngle}
+            $knobId={$knobId}
             onMouseDown={() => setMouseDown(true)}
             onMouseMove={mouseDown ? (event) => onTurn(event) : null}
             onMouseUp={() => setMouseDown(false)}
           >
             <Image
-              id={name}
+              $knobId={$knobId}
+              name={name}
               draggable="false"
               ref={knobImage}
               src="/images/knob.svg"
@@ -47,6 +51,6 @@ export default function KnobEq({
 const StyledButton = styled.button`
   border: none;
   background-color: transparent;
-  transform: rotate(${(props) => props.$knobId === props.name ? props.angle : null}deg);
+  transform: rotate(${(props) => props.angle}deg);
 `;
 
