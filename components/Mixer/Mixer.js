@@ -18,6 +18,7 @@ export default function Mixer({
   });
   const [mouseDown, setMouseDown] = useState(false);
   const [angle, setAngle] = useState(0);
+  const [knobId, setKnobId] = useState("")
 
   const knobImageRef = useRef();
 
@@ -36,7 +37,15 @@ export default function Mixer({
     setAngle(calculateAngle(centerX, centerY, mouseX, mouseY));
 
     // player1.current.volume.value = angle / 20;
-    eQsCh1.current.low.value = angle / 10;
+    setKnobId(event.target.id)
+
+
+    console.log(event.target)
+    if(event.target.id === "low1") {
+      eQsCh1.current.low.value = angle / 10;
+
+    }
+
     console.log("EQ: ", eQsCh1.current);
     console.log("EQ value: ", eQsCh1.current.low.value);
   }
@@ -63,51 +72,29 @@ export default function Mixer({
       player2.current.volume.value = event.target.value;
   }
 
-  const mixer = [
+  const channelArray = [
     {
-      channel1: {
-        gain: 0,
-        eQs: {
-          high: 0,
-          mid: 0,
-          low: 0,
-        },
-        filter: 0,
-        fader: 0,
-      },
+      id: "1",
+      channel: ["gain", { eqs: ["high", "mid", "low"] }, "filter", "fader"],
     },
     {
-      channel1: {
-        gain: 0,
-        eQs: {
-          high: 0,
-          mid: 0,
-          low: 0,
-        },
-        filter: 0,
-        fader: 0,
-      },
+      id: "2",
+      channel: ["gain", { eqs: ["high", "mid", "low"] }, "filter", "fader"],
     },
   ];
-
-  const channelArray2 = [
-    { id: "1", channel1: ["gain", { eqs: ["high", "mid", "low"] }, "filter", "fader"] },
-    { id: "2", channel2: ["gain", { eqs: ["high", "mid", "low"] }, "filter", "fader"] },
-  ];
-
-  const eQArray = ["high", "mid", "low"];
-  const channelArray = ["channel1", "channel2"];
 
   return (
     <div className={styles.container}>
       <p>MIXER</p>
       {channelArray.map((channel) => {
         return (
-          <div key={channel}>
+          <div key={channel.id}>
             <div>
-              {eQArray.map((eq) => (
+              {channelArray[channel.id-1].channel[1].eqs.map((eq) => (
                 <KnobEq
+                  knobId={knobId}
                   key={eq}
+                  name={channel.id+eq}
                   $knobAngle={angle}
                   knobImage={knobImageRef}
                   onTurn={handleTurn}
@@ -117,10 +104,10 @@ export default function Mixer({
                 />
               ))}
             </div>
-            <label htmlFor="faderChannel1">Channel 1 fader</label>
+            <label htmlFor={channel.id}>Channel {channel.id} fader</label>
             <input
-              id="faderChannel1"
-              name="faderChannel1"
+              id={channel.id}
+              name={channel.id}
               type="range"
               min={-60}
               max={0}
